@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+@theme {
+  --color-primary: #04724d;
+  --color-secondary: #cbe59e;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
