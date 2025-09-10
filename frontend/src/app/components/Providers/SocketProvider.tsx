@@ -27,28 +27,32 @@ function SocketProvider({ children }: PropsWithChildren) {
       });
 
       currSocket.on("connect", () => {
-        console.log("Connected");
+        updateSocket(currSocket);
       });
-
-      updateSocket(currSocket);
       return;
     }
 
-    socket.on("initial-notifications", (data) => {
+    const handleInitial = (data: any) => {
       setNotifications(data);
       setMessages(data);
-    });
+    };
 
-    socket.on("receive-message", (data) => {
-      console.log(data);
-      console.log(pathname);
+    const handleMessage = (data: any) => {
       if (pathname === "/") {
         addMessage(data);
         addNotification(data);
       } else {
         addMessage(data);
       }
-    });
+    };
+
+    socket.on("initial-notifications", handleInitial);
+    socket.on("receive-message", handleMessage);
+
+    return () => {
+      socket.off("initial-notifications", handleInitial);
+      socket.off("receive-message", handleMessage);
+    };
   }, [pathname, socket]);
 
   return children;

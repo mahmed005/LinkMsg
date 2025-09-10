@@ -25,10 +25,11 @@ export default function MessageSection({
         (type === "friend" &&
           message.to === "Individual" &&
           (message.receiverId === id ||
-            message.receiverId === context?.session?.user?.id))
+            (message.receiverId === context?.session?.user?.id &&
+              message.from === id)))
     );
     return filtered;
-  }, [messages, type]);
+  }, [messages, type, id]);
 
   return (
     <Stack

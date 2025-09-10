@@ -148,7 +148,7 @@ export async function getFriendSuggestions() {
     users = users.filter((user: any) => user._id !== userId);
 
     users = await Promise.all(users.map(async (user: any) => {
-        if (user.image.startsWith('https'))
+        if (!user.image || user.image.startsWith('https'))
             return user;
         const command = new GetObjectCommand({
             Bucket: process.env.BUCKET_NAME as string,
