@@ -24,6 +24,7 @@ function SocketProvider({ children }: PropsWithChildren) {
     if (!socket) {
       const currSocket = io(socketUri, {
         withCredentials: true,
+        transports: ["websocket", "polling"],
       });
 
       currSocket.on("connect", () => {

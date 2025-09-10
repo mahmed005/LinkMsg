@@ -19,7 +19,9 @@ const server = createServer(app);
 const io = new Server(server, {
     cors: {
         origin: process.env.CLIENT_URI,
-        credentials: true
+        credentials: true,
+        allowedHeaders: '*',
+        methods: ['GET', 'POST']
     }
 });
 
@@ -80,9 +82,7 @@ app.use(cors({
     origin: [
         process.env.CLIENT_URI
     ],
-    allowedHeaders: [
-        'Access-Control-Allow-Origin'
-    ],
+    allowedHeaders: '*',
     credentials: true
 }));
 
