@@ -42,7 +42,14 @@ export default function MessageItem(props: any) {
       )}
       {props.media &&
         props.media.map((image: any, index: number) => (
-          <CardMedia key={index} component={"img"} image={image} />
+          <CardMedia
+            key={index}
+            sx={{
+              maxHeight: "500px",
+            }}
+            component={"img"}
+            image={image}
+          />
         ))}
     </Card>
   );
