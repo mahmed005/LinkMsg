@@ -16,7 +16,6 @@ export default function ChatSection({
   _id: string | undefined;
   type?: "friend" | "group";
 }) {
-  console.log(image, name, _id, type);
   return (
     <div className="fixed top-[calc(100px+1.125rem+40px)] bg-[#e9e9e9] p-2 left-[30dvw] w-[69dvw] h-[calc(100dvh-(100px+1.125rem+40px))] overflow-hidden">
       {!name && !_id && !type && (
